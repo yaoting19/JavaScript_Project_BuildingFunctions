@@ -1,4 +1,4 @@
-# JavaScript_Project-2
+# JavaScript_Project_BuildingFunctions
 
 #### Question 1
 Print a list of books in the console. (Users will need to call the functions thoemselves)
