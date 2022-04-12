@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script>
+var book1 = {isbn:'978-0-744-01669-7', title:'The Legend of Zelda: Tri Force Heroes', author:'Prima Games'
+, format:'Hardcover', price:14.99, stock:2};
+var book2 = {isbn:'978-0-099-54948-2', title:'To Kill a Mockingbird', author:'Harper Lee', format:'Paperback'
+, price:4.99, stock:3};
+var book3 = {isbn: '978-0-744-01668-0', title:'The Legend of Zelda: Tri Force Heroes', author:'Prima Games',
+format:'Paperback', price:9.99, stock:1};
+var book4 = {isbn:'978-0-062-40990-4', title:'Go Set A Watchman', author:'Harper Lee', format:'Audio Book CD', 
+price:10.89, stock:2};
+var book5 = {isbn:'978-0-099-52912-5', title:'Catch-22', author:'Joseph Heller', format:'Paperback', 
+price:6.29, stock:0};
+var book6 = {isbn:'978-1-785-15028-9', title:'Go Set A Watchman', author:'Harper Lee', format:'Hardcover',
+price:9.89, stock:3};
+var book7 = {isbn:'978-0-554-57990-1', title:'A Clash of Kings', author:'George R. R. Martin', format:'Paperback',
+price:4.95, stock:5};
+var book8 = {isbn:'978-1-853-26000-1', title:'Pride and Prejudice', author:'Jane Austin', format:'Paperback',
+price:1.99, stock:4};
+var book9 = {isbn:'978-1-784-87189-4', title:'Casino Royale', author:'Ian Fleming', format:'Hardcover',
+price:6.79, stock:1};
+var list = [book1, book2, book3, book4, book5, book6, book7, book8, book9];
+//printAllBooksSorted function
+function printAllBooksSorted() {
+    //3-1-Sort by price-Ascend/Descend
+    console.table(list.sort(function(a,b){
+        return a.price - b.price;
+    }));
+
+    function sortPriceDesc(a,b) {
+        return b.price - a.price;
+    }
+    console.table(list.sort(sortPriceDesc));
+    //3-2-Sort by title-Ascend/Descend
+    function titleAsc(a,b) {
+        let titleA = a.title.toLowerCase();
+        let titleB = b.title.toLowerCase();
+        if (titleA > titleB) {
+            return 1;
+        } else if (titleA == titleB) {          //Don't forget to use double equals ==
+            return 0;
+        } else if (titleA < titleB) {
+            return -1;
+        }
+    }
+    console.table(list.sort(titleAsc));
+
+    console.table(list.sort(function(a,b){
+        let titleA = a.title.toLowerCase();
+        let titleB = b.title.toLowerCase();
+        if (titleA > titleB) {
+            return -1;
+        } else if (titleA == titleB) {          //Don't forget to use double equals ==
+            return 0;
+        } else if (titleA < titleB) {
+            return 1;
+        }
+    }));
+    //3-3-Sort by author-Ascend/Descend
+    console.table(list.sort(function(a,b) {
+        let authorA = a.author.toLowerCase();
+        let authorB = b.author.toLowerCase();
+        if (authorA > authorB) {
+            return 1;
+        } else if (authorA == authorB) {        //Don't forget to use double equals ==
+            return 0;
+        } else if (authorA < authorB) {
+            return -1;
+        }
+    }));
+
+    function authorDesc(a,b) {
+        let authorA = a.author.toLowerCase();
+        let authorB = b.author.toLowerCase();
+        if (authorA > authorB) {
+            return -1;
+        } else if (authorA == authorB) {        //Don't forget to use double equals ==
+            return 0;
+        } else if (authorA < authorB) {
+            return 1;
+        }
+    }
+    console.table(list.sort(authorDesc));
+}
+//Selection sort & Bubble sort
+
+//Selection sort
+function selectionSort() {
+    var selectArray = [];
+    for (i=0; i<5000; i++) {
+        selectArray.push(Math.floor(Math.random() * 9999 + 1));
+    }
+    console.log(selectArray);
+    for (i=0; i<selectArray.length-1; i++) {
+        for (j=i+1; j<selectArray.length; j++) {
+            if (selectArray[i] > selectArray[j]) {
+                let temp = selectArray[j];
+                selectArray[j] = selectArray[i];
+                selectArray[i] = temp;
+            }
+        }
+    }
+    console.log(selectArray);
+}
+//Bubble sort
+function bubbleSort() {
+    var bubbleArray = [];
+    for (i=0; i<5000; i++) {
+        bubbleArray.push(Math.floor(Math.random() * 9999 + 1));
+    }
+    console.log(bubbleArray);
+    for (i=bubbleArray.length-1; i>0; i--) {
+        let breakLoop = false; 
+        for (j=0; j<i; j++) {
+            if (bubbleArray[j] > bubbleArray[j+1]) {
+                let change = bubbleArray[j];
+                bubbleArray[j] = bubbleArray[j+1];
+                bubbleArray[j+1] = change;
+                breakLoop = true;
+            }
+        }
+        if (!breakLoop) {
+            break;
+        } //No change occured, meaning it's in the right order already, break out the loop right away
+    }
+    console.log(bubbleArray);
+}
+</script>
+</body>
+</html>

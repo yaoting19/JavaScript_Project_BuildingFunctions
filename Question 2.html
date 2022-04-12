@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+        var book1 = {isbn:'9780744016697', title:'The Legend of Zelda: Tri Force Heroes', author:'Prima Games'
+        , format:'Hardcover', price:14.99, stock:2};
+        var book2 = {isbn:'9780099549482', title:'To Kill a Mockingbird', author:'Harper Lee', format:'Paperback'
+        , price:4.99, stock:3};
+        var book3 = {isbn: '9780744016680', title:'The Legend of Zelda: Tri Force Heroes', author:'Prima Games',
+        format:'Paperback', price:9.99, stock:1};
+        var book4 = {isbn:'9780062409904', title:'Go Set A Watchman', author:'Harper Lee', format:'Audio Book CD', 
+        price:10.89, stock:2};
+        var book5 = {isbn:'9780099529125', title:'Catch-22', author:'Joseph Heller', format:'Paperback', 
+        price:6.29, stock:0};
+        var book6 = {isbn:'9781785150289', title:'Go Set A Watchman', author:'Harper Lee', format:'Hardcover',
+        price:9.89, stock:3};
+        var book7 = {isbn:'9780554579901', title:'A Clash of Kings', author:'George R. R. Martin', format:'Paperback',
+        price:4.95, stock:5};
+        var book8 = {isbn:'9781853260001', title:'Pride and Prejudice', author:'Jane Austin', format:'Paperback',
+        price:1.99, stock:4};
+        var book9 = {isbn:'9781784871894', title:'Casino Royale', author:'Ian Fleming', format:'Hardcover',
+        price:6.79, stock:1};
+        var list = [book1, book2, book3, book4, book5, book6, book7, book8, book9];
+        function validateISBNs(){
+            for (x=0; x<list.length; x++){
+                let isbn = list[x].isbn
+                function validISBN(isbn){
+                    isbn = isbn.split('') //split "strings" into array letter by letter
+                    let isbnSum1 = 0;
+                    let isbnSum2 = 0;
+                    for (i=0; i<=10; i=i+2) {
+                        isbnSum1 = isbnSum1 + parseInt(isbn[i]); //transfer string to integer 
+                    }
+                    for (i=1; i<=11; i=i+2) {
+                        isbnSum2 = isbnSum2 + parseInt(isbn[i] * 3); //transfer string to integer
+                    }
+                    isbn[12] = (10 - ((isbnSum1 + isbnSum2) % 10))
+                    isbn = isbn.join('');
+                    return isbn;
+                }
+                if (validISBN(isbn) != list[x].isbn) {
+                    console.log(list[x]);
+                    list.splice(x,1);
+                }
+            } /* Variables created inside of loops are local to the loops body.Loops If there is a loop 
+            within a loop, don't use the same variable for both loops. Ex: x & i */
+            return console.log(list[x]), console.table(list);
+        }
+        validateISBNs();
+    </script>
+</body>
+</html>
